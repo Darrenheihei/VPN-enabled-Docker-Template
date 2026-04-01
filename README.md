@@ -1,7 +1,6 @@
 This repo provides a template for running python application in a VPN-enabled docker container. Specifically, it is running on MacOS + ProtonVPN (free tier) + Orbstack.
 
 # Preparation
----
 ## VPN-related
 1. Download WireGuard config file from ProtonVPN. Details see [here](https://protonvpn.com/support/wireguard-configurations?srsltid=AfmBOoqfbUugNE8sZvYbYAWAGCWi-y-zZeRCNiC0tdVbh822L6G0li-h). Note that you should not attach the `.conf` file you get to this project/you should gitignore it.
 2. Set `.env` by copying needed credentials from the above `.conf` file.
