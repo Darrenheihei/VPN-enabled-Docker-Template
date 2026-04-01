@@ -1,0 +1,32 @@
+services:
+  vpn:
+    image: qmcgaw/gluetun
+    container_name: protonvpn
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    environment:
+      # --- VPN PROVIDER SETTINGS ---
+      - VPN_SERVICE_PROVIDER=custom
+      - VPN_TYPE=wireguard
+      - VPN_ENDPOINT_IP=149.34.251.134
+      - VPN_ENDPOINT_PORT=51820
+      - WIREGUARD_PUBLIC_KEY=${PROTON_PUBLIC_KEY}
+      - WIREGUARD_PRIVATE_KEY=${PROTON_PRIVATE_KEY}
+      - WIREGUARD_ADDRESSES=${PROTON_ADDRESS}
+      
+      # --- ORBSTACK / MACOS COMPATIBILITY ---
+      - WIREGUARD_IMPLEMENTATION=userspace
+      - WIREGUARD_MTU=1300
+
+  app:
+    build: .
+    container_name: python_script
+    env_file:
+      - .env.app
+    # This tells the app to use the vpn's network stack
+    network_mode: "service:vpn"
+    depends_on:
+      vpn:
+        condition: service_healthy
