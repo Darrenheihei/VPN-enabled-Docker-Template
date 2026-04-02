@@ -2,6 +2,7 @@ This repo provides a template for running python application in a VPN-enabled do
 
 Note that only the docker container will have VPN enabled. That doesn't affect your local machine and you can use services on your local machine without VPN.
 
+Note that this is the simplest version. More features like rotating IP address is not implemented.
 # Preparation
 ## VPN-related
 1. Download WireGuard config file from ProtonVPN. Details see [here](https://protonvpn.com/support/wireguard-configurations?srsltid=AfmBOoqfbUugNE8sZvYbYAWAGCWi-y-zZeRCNiC0tdVbh822L6G0li-h). Note that you should not attach the `.conf` file you get to this project/you should gitignore it.
